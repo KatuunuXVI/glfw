@@ -1822,7 +1822,7 @@ typedef void (* GLFWcursorenterfun)(GLFWwindow* window, int entered);
  *
  *  @ingroup input
  */
-typedef void (* GLFWscrollfun)(GLFWwindow* window, double xoffset, double yoffset);
+typedef void (* GLFWscrollfun)(GLFWwindow* window, double xoffset, double yoffset, int mods);
 
 /*! @brief The function pointer type for keyboard key callbacks.
  *
@@ -5089,6 +5089,8 @@ GLFWAPI void glfwSetCursor(GLFWwindow* window, GLFWcursor* cursor);
  */
 GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* window, GLFWkeyfun callback);
 
+GLFWAPI GLFWkeyfun glfwGetKeyCallback(GLFWwindow* handle);
+
 /*! @brief Sets the Unicode character callback.
  *
  *  This function sets the character callback of the specified window, which is
@@ -5211,6 +5213,8 @@ GLFWAPI GLFWcharmodsfun glfwSetCharModsCallback(GLFWwindow* window, GLFWcharmods
  */
 GLFWAPI GLFWmousebuttonfun glfwSetMouseButtonCallback(GLFWwindow* window, GLFWmousebuttonfun callback);
 
+GLFWAPI GLFWmousebuttonfun glfwGetMouseButtonCallback(GLFWwindow* handle);
+
 /*! @brief Sets the cursor position callback.
  *
  *  This function sets the cursor position callback of the specified window,
@@ -5242,6 +5246,8 @@ GLFWAPI GLFWmousebuttonfun glfwSetMouseButtonCallback(GLFWwindow* window, GLFWmo
  *  @ingroup input
  */
 GLFWAPI GLFWcursorposfun glfwSetCursorPosCallback(GLFWwindow* window, GLFWcursorposfun callback);
+
+GLFWAPI GLFWcursorposfun glfwGetCursorPosCallback(GLFWwindow* handle);
 
 /*! @brief Sets the cursor enter/leave callback.
  *
@@ -5308,6 +5314,7 @@ GLFWAPI GLFWcursorenterfun glfwSetCursorEnterCallback(GLFWwindow* window, GLFWcu
  */
 GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun callback);
 
+GLFWAPI GLFWscrollfun glfwGetScrollCallback(GLFWwindow* handle);
 /*! @brief Sets the path drop callback.
  *
  *  This function sets the path drop callback of the specified window, which is
@@ -6236,6 +6243,7 @@ GLFWAPI int glfwVulkanSupported(void);
  */
 GLFWAPI const char** glfwGetRequiredInstanceExtensions(uint32_t* count);
 
+GLFWAPI int getKeyMods();
 #if defined(VK_VERSION_1_0)
 
 /*! @brief Returns the address of the specified Vulkan instance function.
