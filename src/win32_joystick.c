@@ -343,7 +343,7 @@ static BOOL CALLBACK deviceObjectCallback(const DIDEVICEOBJECTINSTANCEW* doi,
 
 // DirectInput device enumeration callback
 //
-static BOOL CALLBACK deviceCallback(const DIDEVICEINSTANCE* di, void* user)
+static BOOL CALLBACK deviceCallback(const DIDEVICEINSTANCE* di, void __attribute__ ((unused)) * user)
 {
     int jid = 0;
     DIDEVCAPS dc;

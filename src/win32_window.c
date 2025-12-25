@@ -276,7 +276,7 @@ static void enableRawMouseMotion(_GLFWwindow* window)
 
 // Disables WM_INPUT messages for the mouse
 //
-static void disableRawMouseMotion(_GLFWwindow* window)
+static void disableRawMouseMotion(_GLFWwindow __attribute__ ((unused)) * window)
 {
     const RAWINPUTDEVICE rid = { 0x01, 0x02, RIDEV_REMOVE, NULL };
 
@@ -1457,7 +1457,8 @@ static int createNativeWindow(_GLFWwindow* window,
 
         if (wndconfig->maximized && !wndconfig->decorated)
         {
-            MONITORINFO mi = { sizeof(mi) };
+            MONITORINFO mi;
+            mi.cbSize = sizeof(mi);
             GetMonitorInfoW(mh, &mi);
 
             SetWindowPos(window->win32.handle, HWND_TOP,
@@ -1800,7 +1801,8 @@ void _glfwShowWindowWin32(_GLFWwindow* window)
         //       a main window, so even SW_SHOWDEFAULT does nothing
         //       This definition is undocumented and can change (source: Raymond Chen)
         // HACK: Apply the STARTUPINFO show command manually if available
-        STARTUPINFOW si = { sizeof(si) };
+        STARTUPINFOW si;
+        si.cb = sizeof(si);
         GetStartupInfoW(&si);
         if (si.dwFlags & STARTF_USESHOWWINDOW)
             showCommand = si.wShowWindow;
@@ -1832,7 +1834,7 @@ void _glfwSetWindowMonitorWin32(_GLFWwindow* window,
                                 _GLFWmonitor* monitor,
                                 int xpos, int ypos,
                                 int width, int height,
-                                int refreshRate)
+                                int __attribute__ ((unused)) refreshRate)
 {
     if (window->monitor == monitor)
     {
@@ -1876,7 +1878,8 @@ void _glfwSetWindowMonitorWin32(_GLFWwindow* window,
 
     if (window->monitor)
     {
-        MONITORINFO mi = { sizeof(mi) };
+        MONITORINFO mi;
+        mi.cbSize = sizeof(mi);
         UINT flags = SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOCOPYBITS;
 
         if (window->decorated)
@@ -1987,12 +1990,12 @@ GLFWbool _glfwFramebufferTransparentWin32(_GLFWwindow* window)
     return GLFW_TRUE;
 }
 
-void _glfwSetWindowResizableWin32(_GLFWwindow* window, GLFWbool enabled)
+void _glfwSetWindowResizableWin32(_GLFWwindow* window, GLFWbool __attribute__ ((unused)) enabled)
 {
     updateWindowStyles(window);
 }
 
-void _glfwSetWindowDecoratedWin32(_GLFWwindow* window, GLFWbool enabled)
+void _glfwSetWindowDecoratedWin32(_GLFWwindow* window, GLFWbool __attribute__ ((unused)) enabled)
 {
     updateWindowStyles(window);
 }
@@ -2345,7 +2348,7 @@ void _glfwDestroyCursorWin32(_GLFWcursor* cursor)
         DestroyIcon((HICON) cursor->win32.handle);
 }
 
-void _glfwSetCursorWin32(_GLFWwindow* window, _GLFWcursor* cursor)
+void _glfwSetCursorWin32(_GLFWwindow* window, _GLFWcursor __attribute__ ((unused)) * cursor)
 {
     if (cursorInContentArea(window))
         updateCursorImage(window);

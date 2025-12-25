@@ -367,7 +367,8 @@ static LRESULT CALLBACK helperWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LP
 static GLFWbool createHelperWindow(void)
 {
     MSG msg;
-    WNDCLASSEXW wc = { sizeof(wc) };
+    WNDCLASSEXW wc;
+    wc.cbSize = sizeof(wc);
 
     wc.style         = CS_OWNDC;
     wc.lpfnWndProc   = (WNDPROC) helperWindowProc;
@@ -568,7 +569,7 @@ void _glfwUpdateKeyNamesWin32(void)
 //
 BOOL _glfwIsWindowsVersionOrGreaterWin32(WORD major, WORD minor, WORD sp)
 {
-    OSVERSIONINFOEXW osvi = { sizeof(osvi), major, minor, 0, 0, {0}, sp };
+    OSVERSIONINFOEXW osvi = { sizeof(osvi), major, minor, 0, 0, {0}, sp , .wServicePackMinor = 0};
     DWORD mask = VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR;
     ULONGLONG cond = VerSetConditionMask(0, VER_MAJORVERSION, VER_GREATER_EQUAL);
     cond = VerSetConditionMask(cond, VER_MINORVERSION, VER_GREATER_EQUAL);
@@ -594,7 +595,7 @@ BOOL _glfwIsWindows10BuildOrGreaterWin32(WORD build)
     return RtlVerifyVersionInfo(&osvi, mask, cond) == 0;
 }
 
-GLFWbool _glfwConnectWin32(int platformID, _GLFWplatform* platform)
+GLFWbool _glfwConnectWin32(int __attribute__ ((unused)) platformID, _GLFWplatform* platform)
 {
     const _GLFWplatform win32 =
     {

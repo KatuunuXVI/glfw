@@ -81,7 +81,7 @@ static int createNativeWindow(_GLFWwindow* window,
         fitToMonitor(window);
     else
     {
-        if (wndconfig->xpos == GLFW_ANY_POSITION && wndconfig->ypos == GLFW_ANY_POSITION)
+        if ((unsigned int) wndconfig->xpos == GLFW_ANY_POSITION && (unsigned int) wndconfig->ypos == GLFW_ANY_POSITION)
         {
             window->null.xpos = 17;
             window->null.ypos = 17;
@@ -178,11 +178,11 @@ void _glfwDestroyWindowNull(_GLFWwindow* window)
         window->context.destroy(window);
 }
 
-void _glfwSetWindowTitleNull(_GLFWwindow* window, const char* title)
+void _glfwSetWindowTitleNull(_GLFWwindow __attribute__ ((unused)) * window, const char __attribute__ ((unused)) * title)
 {
 }
 
-void _glfwSetWindowIconNull(_GLFWwindow* window, int count, const GLFWimage* images)
+void _glfwSetWindowIconNull(_GLFWwindow __attribute__ ((unused)) * window, int __attribute__ ((unused)) count, const GLFWimage __attribute__ ((unused)) * images)
 {
 }
 
@@ -190,7 +190,7 @@ void _glfwSetWindowMonitorNull(_GLFWwindow* window,
                                _GLFWmonitor* monitor,
                                int xpos, int ypos,
                                int width, int height,
-                               int refreshRate)
+                               int __attribute__ ((unused)) refreshRate)
 {
     if (window->monitor == monitor)
     {
@@ -266,8 +266,8 @@ void _glfwSetWindowSizeNull(_GLFWwindow* window, int width, int height)
 }
 
 void _glfwSetWindowSizeLimitsNull(_GLFWwindow* window,
-                                  int minwidth, int minheight,
-                                  int maxwidth, int maxheight)
+                                  int __attribute__ ((unused)) minwidth, int __attribute__ ((unused)) minheight,
+                                  int __attribute__ ((unused))  maxwidth, int __attribute__ ((unused)) maxheight)
 {
     int width = window->null.width;
     int height = window->null.height;
@@ -275,7 +275,7 @@ void _glfwSetWindowSizeLimitsNull(_GLFWwindow* window,
     _glfwSetWindowSizeNull(window, width, height);
 }
 
-void _glfwSetWindowAspectRatioNull(_GLFWwindow* window, int n, int d)
+void _glfwSetWindowAspectRatioNull(_GLFWwindow* window, int __attribute__ ((unused)) n, int __attribute__ ((unused)) d)
 {
     int width = window->null.width;
     int height = window->null.height;
@@ -319,7 +319,7 @@ void _glfwGetWindowFrameSizeNull(_GLFWwindow* window,
     }
 }
 
-void _glfwGetWindowContentScaleNull(_GLFWwindow* window, float* xscale, float* yscale)
+void _glfwGetWindowContentScaleNull(_GLFWwindow __attribute__ ((unused)) * window, float* xscale, float* yscale)
 {
     if (xscale)
         *xscale = 1.f;
@@ -404,7 +404,7 @@ void _glfwSetWindowFloatingNull(_GLFWwindow* window, GLFWbool enabled)
     window->null.floating = enabled;
 }
 
-void _glfwSetWindowMousePassthroughNull(_GLFWwindow* window, GLFWbool enabled)
+void _glfwSetWindowMousePassthroughNull(_GLFWwindow __attribute__ ((unused)) * window, GLFWbool __attribute__ ((unused)) enabled)
 {
 }
 
@@ -418,7 +418,7 @@ void _glfwSetWindowOpacityNull(_GLFWwindow* window, float opacity)
     window->null.opacity = opacity;
 }
 
-void _glfwSetRawMouseMotionNull(_GLFWwindow *window, GLFWbool enabled)
+void _glfwSetRawMouseMotionNull(_GLFWwindow __attribute__ ((unused)) *window, GLFWbool __attribute__ ((unused)) enabled)
 {
 }
 
@@ -432,7 +432,7 @@ void _glfwShowWindowNull(_GLFWwindow* window)
     window->null.visible = GLFW_TRUE;
 }
 
-void _glfwRequestWindowAttentionNull(_GLFWwindow* window)
+void _glfwRequestWindowAttentionNull(_GLFWwindow __attribute__ ((unused)) * window)
 {
 }
 
@@ -493,7 +493,7 @@ void _glfwWaitEventsNull(void)
 {
 }
 
-void _glfwWaitEventsTimeoutNull(double timeout)
+void _glfwWaitEventsTimeoutNull(double __attribute__ ((unused)) timeout)
 {
 }
 
@@ -515,27 +515,27 @@ void _glfwSetCursorPosNull(_GLFWwindow* window, double x, double y)
     _glfw.null.ycursor = window->null.ypos + (int) y;
 }
 
-void _glfwSetCursorModeNull(_GLFWwindow* window, int mode)
+void _glfwSetCursorModeNull(_GLFWwindow __attribute__ ((unused)) * window, int __attribute__ ((unused)) mode)
 {
 }
 
-GLFWbool _glfwCreateCursorNull(_GLFWcursor* cursor,
-                               const GLFWimage* image,
-                               int xhot, int yhot)
-{
-    return GLFW_TRUE;
-}
-
-GLFWbool _glfwCreateStandardCursorNull(_GLFWcursor* cursor, int shape)
+GLFWbool _glfwCreateCursorNull(_GLFWcursor __attribute__ ((unused)) * cursor,
+                               const GLFWimage __attribute__ ((unused)) * image,
+                               int __attribute__ ((unused))  xhot, int __attribute__ ((unused)) yhot)
 {
     return GLFW_TRUE;
 }
 
-void _glfwDestroyCursorNull(_GLFWcursor* cursor)
+GLFWbool _glfwCreateStandardCursorNull(_GLFWcursor __attribute__ ((unused)) * cursor, int __attribute__ ((unused)) shape)
+{
+    return GLFW_TRUE;
+}
+
+void _glfwDestroyCursorNull(_GLFWcursor __attribute__ ((unused)) * cursor)
 {
 }
 
-void _glfwSetCursorNull(_GLFWwindow* window, _GLFWcursor* cursor)
+void _glfwSetCursorNull(_GLFWwindow __attribute__ ((unused)) * window, _GLFWcursor __attribute__ ((unused)) * cursor)
 {
 }
 
@@ -551,7 +551,7 @@ const char* _glfwGetClipboardStringNull(void)
     return _glfw.null.clipboardString;
 }
 
-EGLenum _glfwGetEGLPlatformNull(EGLint** attribs)
+EGLenum _glfwGetEGLPlatformNull(EGLint __attribute__ ((unused)) ** attribs)
 {
     if (_glfw.egl.EXT_platform_base && _glfw.egl.MESA_platform_surfaceless)
         return EGL_PLATFORM_SURFACELESS_MESA;
@@ -564,7 +564,7 @@ EGLNativeDisplayType _glfwGetEGLNativeDisplayNull(void)
     return EGL_DEFAULT_DISPLAY;
 }
 
-EGLNativeWindowType _glfwGetEGLNativeWindowNull(_GLFWwindow* window)
+EGLNativeWindowType _glfwGetEGLNativeWindowNull(_GLFWwindow __attribute__ ((unused)) * window)
 {
     return 0;
 }
@@ -710,15 +710,15 @@ void _glfwGetRequiredInstanceExtensionsNull(char** extensions)
     extensions[1] = "VK_EXT_headless_surface";
 }
 
-GLFWbool _glfwGetPhysicalDevicePresentationSupportNull(VkInstance instance,
-                                                       VkPhysicalDevice device,
-                                                       uint32_t queuefamily)
+GLFWbool _glfwGetPhysicalDevicePresentationSupportNull(VkInstance __attribute__ ((unused)) instance,
+                                                       VkPhysicalDevice __attribute__ ((unused)) device,
+                                                       uint32_t __attribute__ ((unused)) queuefamily)
 {
     return GLFW_TRUE;
 }
 
 VkResult _glfwCreateWindowSurfaceNull(VkInstance instance,
-                                      _GLFWwindow* window,
+                                      _GLFWwindow __attribute__ ((unused))  * window,
                                       const VkAllocationCallbacks* allocator,
                                       VkSurfaceKHR* surface)
 {

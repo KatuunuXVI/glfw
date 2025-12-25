@@ -68,7 +68,7 @@ void _glfwFreeMonitorNull(_GLFWmonitor* monitor)
     _glfwFreeGammaArrays(&monitor->null.ramp);
 }
 
-void _glfwGetMonitorPosNull(_GLFWmonitor* monitor, int* xpos, int* ypos)
+void _glfwGetMonitorPosNull(_GLFWmonitor __attribute__ ((unused))  * monitor, int* xpos, int* ypos)
 {
     if (xpos)
         *xpos = 0;
@@ -76,7 +76,7 @@ void _glfwGetMonitorPosNull(_GLFWmonitor* monitor, int* xpos, int* ypos)
         *ypos = 0;
 }
 
-void _glfwGetMonitorContentScaleNull(_GLFWmonitor* monitor,
+void _glfwGetMonitorContentScaleNull(_GLFWmonitor __attribute__ ((unused))  * monitor,
                                      float* xscale, float* yscale)
 {
     if (xscale)
@@ -85,7 +85,7 @@ void _glfwGetMonitorContentScaleNull(_GLFWmonitor* monitor,
         *yscale = 1.f;
 }
 
-void _glfwGetMonitorWorkareaNull(_GLFWmonitor* monitor,
+void _glfwGetMonitorWorkareaNull(_GLFWmonitor __attribute__ ((unused))  * monitor,
                                  int* xpos, int* ypos,
                                  int* width, int* height)
 {
@@ -101,7 +101,7 @@ void _glfwGetMonitorWorkareaNull(_GLFWmonitor* monitor,
         *height = mode.height - 10;
 }
 
-GLFWvidmode* _glfwGetVideoModesNull(_GLFWmonitor* monitor, int* found)
+GLFWvidmode* _glfwGetVideoModesNull(_GLFWmonitor __attribute__ ((unused)) * monitor, int* found)
 {
     GLFWvidmode* mode = _glfw_calloc(1, sizeof(GLFWvidmode));
     *mode = getVideoMode();
@@ -109,7 +109,7 @@ GLFWvidmode* _glfwGetVideoModesNull(_GLFWmonitor* monitor, int* found)
     return mode;
 }
 
-GLFWbool _glfwGetVideoModeNull(_GLFWmonitor* monitor, GLFWvidmode* mode)
+GLFWbool _glfwGetVideoModeNull(_GLFWmonitor __attribute__ ((unused))  * monitor, GLFWvidmode* mode)
 {
     *mode = getVideoMode();
     return GLFW_TRUE;

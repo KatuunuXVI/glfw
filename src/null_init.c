@@ -35,7 +35,7 @@
 //////                       GLFW platform API                      //////
 //////////////////////////////////////////////////////////////////////////
 
-GLFWbool _glfwConnectNull(int platformID, _GLFWplatform* platform)
+GLFWbool _glfwConnectNull(int __attribute__ ((unused)) platformID, _GLFWplatform* platform)
 {
     const _GLFWplatform null =
     {
@@ -117,7 +117,7 @@ GLFWbool _glfwConnectNull(int platformID, _GLFWplatform* platform)
     return GLFW_TRUE;
 }
 
-int _glfwInitNull(void)
+GLFWbool _glfwInitNull(void)
 {
     int scancode;
 

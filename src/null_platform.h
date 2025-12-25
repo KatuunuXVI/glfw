@@ -207,7 +207,7 @@ typedef struct _GLFWlibraryNull
 void _glfwPollMonitorsNull(void);
 
 GLFWbool _glfwConnectNull(int platformID, _GLFWplatform* platform);
-int _glfwInitNull(void);
+GLFWbool _glfwInitNull(void);
 void _glfwTerminateNull(void);
 
 void _glfwFreeMonitorNull(_GLFWmonitor* monitor);

@@ -70,21 +70,21 @@ static _GLFWinitconfig _glfwInitHints =
 
 // The allocation function used when no custom allocator is set
 //
-static void* defaultAllocate(size_t size, void* user)
+static void* defaultAllocate(size_t size, void __attribute__ ((unused)) * user)
 {
     return malloc(size);
 }
 
 // The deallocation function used when no custom allocator is set
 //
-static void defaultDeallocate(void* block, void* user)
+static void defaultDeallocate(void* block, void __attribute__ ((unused))  * user)
 {
     free(block);
 }
 
 // The reallocation function used when no custom allocator is set
 //
-static void* defaultReallocate(void* block, size_t size, void* user)
+static void* defaultReallocate(void* block, size_t size, void __attribute__ ((unused))  * user)
 {
     return realloc(block, size);
 }

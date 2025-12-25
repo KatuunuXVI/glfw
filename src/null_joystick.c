@@ -40,7 +40,7 @@ void _glfwTerminateJoysticksNull(void)
 {
 }
 
-GLFWbool _glfwPollJoystickNull(_GLFWjoystick* js, int mode)
+GLFWbool _glfwPollJoystickNull(_GLFWjoystick __attribute__ ((unused)) * js, int __attribute__ ((unused)) mode)
 {
     return GLFW_FALSE;
 }
@@ -50,7 +50,7 @@ const char* _glfwGetMappingNameNull(void)
     return "";
 }
 
-void _glfwUpdateGamepadGUIDNull(char* guid)
+void _glfwUpdateGamepadGUIDNull(char __attribute__ ((unused)) * guid)
 {
 }
 

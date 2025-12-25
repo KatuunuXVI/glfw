@@ -39,8 +39,8 @@
 // Callback for EnumDisplayMonitors in createMonitor
 //
 static BOOL CALLBACK monitorCallback(HMONITOR handle,
-                                     HDC dc,
-                                     RECT* rect,
+                                     HDC __attribute__ ((unused)) dc,
+                                     RECT __attribute__ ((unused)) * rect,
                                      LPARAM data)
 {
     MONITORINFOEXW mi;
@@ -350,7 +350,7 @@ void _glfwGetHMONITORContentScaleWin32(HMONITOR handle, float* xscale, float* ys
 //////                       GLFW platform API                      //////
 //////////////////////////////////////////////////////////////////////////
 
-void _glfwFreeMonitorWin32(_GLFWmonitor* monitor)
+void _glfwFreeMonitorWin32(_GLFWmonitor __attribute__ ((unused)) * monitor)
 {
 }
 

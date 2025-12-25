@@ -1314,7 +1314,7 @@ GLFWAPI int glfwUpdateGamepadMappings(const char* string)
             const size_t length = strcspn(c, "\r\n");
             if (length < sizeof(line))
             {
-                _GLFWmapping mapping = {{0}};
+                _GLFWmapping mapping = {{0}, {0}, {{0,0,0,0}}, {{0,0,0,0}}};
 
                 memcpy(line, c, length);
                 line[length] = '\0';
@@ -1499,7 +1499,7 @@ GLFWAPI int glfwGetGamepadState(int jid, GLFWgamepadstate* state)
     return GLFW_TRUE;
 }
 
-GLFWAPI void glfwSetClipboardString(GLFWwindow* handle, const char* string)
+GLFWAPI void glfwSetClipboardString(GLFWwindow __attribute__ ((unused))  * handle, const char* string)
 {
     assert(string != NULL);
 
@@ -1507,7 +1507,7 @@ GLFWAPI void glfwSetClipboardString(GLFWwindow* handle, const char* string)
     _glfw.platform.setClipboardString(string);
 }
 
-GLFWAPI const char* glfwGetClipboardString(GLFWwindow* handle)
+GLFWAPI const char* glfwGetClipboardString(GLFWwindow __attribute__ ((unused))  * handle)
 {
     _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
     return _glfw.platform.getClipboardString();
