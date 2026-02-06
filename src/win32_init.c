@@ -600,7 +600,7 @@ GLFWbool _glfwConnectWin32(int __attribute__ ((unused)) platformID, _GLFWplatfor
     const _GLFWplatform win32 =
     {
         .platformID = GLFW_PLATFORM_WIN32,
-        .init = _glfwInitWin32,
+        .init = (GLFWbool (*)(void)) _glfwInitWin32,
         .terminate = _glfwTerminateWin32,
         .getCursorPos = _glfwGetCursorPosWin32,
         .setCursorPos = _glfwSetCursorPosWin32,

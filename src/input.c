@@ -965,7 +965,7 @@ GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* handle, GLFWkeyfun cbfun)
 }
 
 GLFWAPI GLFWkeyfun glfwGetKeyCallback(GLFWwindow* handle) {
-    _GLFWwindow* window = ((_GLFWwindow*) handle);
+    _GLFWwindow* __attribute__ ((unused)) window = ((_GLFWwindow*) handle);
     assert(window != NULL);
 
     _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
