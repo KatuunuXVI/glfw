@@ -399,12 +399,16 @@ GLFWAPI int glfwInit(void)
         _glfw.allocator.deallocate = defaultDeallocate;
     }
 
-    if (!_glfwSelectPlatform(_glfw.hints.init.platformID, &_glfw.platform))
+    if (!_glfwSelectPlatform(_glfw.hints.init.platformID, &_glfw.platform)) {
+        fprintf(stderr, "GLFW: Platform Select Failed\n");
         return GLFW_FALSE;
+    }
+
 
     if (!_glfw.platform.init())
     {
         terminate();
+        fprintf(stderr, "GLFW: Platform Init FFFFailed\n");
         return GLFW_FALSE;
     }
 
@@ -413,6 +417,7 @@ GLFWAPI int glfwInit(void)
         !_glfwPlatformCreateTls(&_glfw.contextSlot))
     {
         terminate();
+        fprintf(stderr, "GLFW Mutex, and TLS failed\n");
         return GLFW_FALSE;
     }
 

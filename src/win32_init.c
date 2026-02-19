@@ -329,6 +329,7 @@ static void createKeyTables(void)
 
 // Window procedure for the hidden helper window
 //
+#ifndef NDEBUG
 static LRESULT CALLBACK helperWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
@@ -361,9 +362,11 @@ static LRESULT CALLBACK helperWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LP
 
     return DefWindowProcW(hWnd, uMsg, wParam, lParam);
 }
+#endif
 
 // Creates a dummy window for behind-the-scenes work
 //
+#ifndef NDEBUG
 static GLFWbool createHelperWindow(void)
 {
     MSG msg;
@@ -426,7 +429,7 @@ static GLFWbool createHelperWindow(void)
 
    return GLFW_TRUE;
 }
-
+#endif
 //////////////////////////////////////////////////////////////////////////
 //////                       GLFW internal API                      //////
 //////////////////////////////////////////////////////////////////////////
@@ -691,9 +694,12 @@ int _glfwInitWin32(void)
         SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
     else
         SetProcessDPIAware();
-
-    if (!createHelperWindow())
+#ifndef NDEBUG
+    if (!createHelperWindow()) {
+        fprintf(stderr, "Could Not Create Helper Window\n");
         return GLFW_FALSE;
+    }
+#endif
 
     _glfwPollMonitorsWin32();
     return GLFW_TRUE;

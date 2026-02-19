@@ -440,8 +440,11 @@ GLFWbool _glfwInitWGL(void)
     // NOTE: This code will accept the Microsoft GDI ICD; accelerated context
     //       creation failure occurs during manual pixel format enumeration
 
+#ifndef NDEBUG
     dc = GetDC(_glfw.win32.helperWindowHandle);
-
+#else
+    dc = GetDC(NULL);
+#endif
     ZeroMemory(&pfd, sizeof(pfd));
     pfd.nSize = sizeof(pfd);
     pfd.nVersion = 1;
@@ -518,6 +521,7 @@ GLFWbool _glfwInitWGL(void)
 
     wglMakeCurrent(pdc, prc);
     wglDeleteContext(rc);
+    ReleaseDC(NULL, dc);
     return GLFW_TRUE;
 }
 

@@ -26,7 +26,7 @@
 //========================================================================
 
 #pragma once
-
+#include <stdio.h>
 #if defined(_GLFW_USE_CONFIG_H)
  #include "glfw_config.h"
 #endif
@@ -346,6 +346,7 @@ typedef VkResult (APIENTRY * PFN_vkEnumerateInstanceExtensionProperties)(const c
 #define _GLFW_REQUIRE_INIT_OR_RETURN(x)              \
     if (!_glfw.initialized)                          \
     {                                                \
+        printf("GLFW Not Initialized!\n");                                             \
         _glfwInputError(GLFW_NOT_INITIALIZED, NULL); \
         return x;                                    \
     }
